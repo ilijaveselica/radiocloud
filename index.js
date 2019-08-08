@@ -48,7 +48,9 @@ const App = (new class {
     this.streamInfo = this.setupStreamInfo('.stream-info');
     const stationUrl = this.plyr.storage.get('stationUrl');
     const byStationUrl = it => it.location === stationUrl;
-    const [selectedStation] = stations.filter(byStationUrl) || stations;
+    const [selectedStation] = stations.filter(byStationUrl).length
+      ? stations.filter(byStationUrl)
+      : stations;
     this.setStation(selectedStation);
     this.stationPicker = this.setupStationPicker('.station-picker', stations);
 
